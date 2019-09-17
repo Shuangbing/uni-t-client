@@ -19,6 +19,7 @@ var UserSetting:JSON!
 
 class HomeTabBarController: UITabBarController{
     override func viewDidLoad() {
+        self.modalPresentationStyle = .fullScreen
         super.viewDidLoad()
         setupVC()
         initShareMenu()
@@ -47,6 +48,9 @@ class HomeTabBarController: UITabBarController{
     
     func setupVC(){
         UserData = readUser()
+        if (UserData.email == "dev@uni-t.cc") {
+            developServer()
+        }
         initSetting()
         self.view.backgroundColor = Color_Back
         self.tabBar.backgroundColor = .white
@@ -85,6 +89,15 @@ func getNavVC(view: UIViewController) -> UINavigationController{
     if #available(iOS 11.0, *) {
         navVC.navigationBar.largeTitleTextAttributes = textAttributes
         navVC.navigationBar.prefersLargeTitles = true
+    }
+    navVC.modalPresentationStyle = .fullScreen
+    if #available(iOS 13.0, *) {
+        let app = UINavigationBarAppearance()
+        app.backgroundColor = Color_Main
+        app.largeTitleTextAttributes = textAttributes
+        app.titleTextAttributes = textAttributes
+        navVC.navigationBar.scrollEdgeAppearance = app
+        navVC.navigationBar.standardAppearance = app
     }
     navVC.navigationBar.barStyle = .black
     navVC.tabBarItem = view.tabBarItem

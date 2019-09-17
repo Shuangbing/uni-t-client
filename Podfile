@@ -7,7 +7,7 @@ target 'unitool' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod "ViewAnimator"
-  pod 'StatusAlert', git: 'https://github.com/Shuangbing/StatusAlert.git'
+  pod 'StatusAlert'
   pod 'RealmSwift'
   use_frameworks!
 

@@ -28,9 +28,29 @@ var url_attend_2 = "https://call**********.jp/index.php"
 var url_webclass_1 = "https://webcl**********.jp/webclass/login.php"
 var url_webclass_2 = "https://webcl**********.jp/webclass/?acs_="
 
+
+func developServer() {
+    url_attend_1 = "https://www.uni-t.cc/demo1/attend_1.html"
+    url_attend_2 = "https://www.uni-t.cc/demo1/attend_2.html"
+    url_webclass_1 = "https://www.uni-t.cc/demo1/webclass.html?"
+    url_webclass_2 = "https://www.uni-t.cc/demo1/webclass.html?"
+}
+
 class UnitSchool: NSObject{
     
     func check(completion:((_ success: Bool, _ result: String?, _ attendData: [JSON])->Void)?, user:String, psw:String) {
+        if (user == "g0000000" && psw == "demo20180707") {
+            developServer()
+            let UserData = User()
+            UserData.id = 0
+            UserData.email = "dev@uni-t.cc"
+            UserData.token = "@"
+            UserData.refresh_token = "@"
+            UserData.school = 10001
+            UserData.schoolAccount = "\(user)|\(psw)"
+            addUser(user: UserData)
+            return (completion?(true, "ログイン完了", []))!
+        }
         //---------check---------
         var resJson = JSON.init()
         let webc_login_data: Parameters = [
@@ -87,11 +107,12 @@ class UnitSchool: NSObject{
             if(acs_msg.count == 8) {
                 Alamofire.request(url_webclass_2 + acs_msg + "&year=\(year)&semester=\(semester+3)").responseString { (response) in
                     let html:String = String(data: response.data!, encoding: .utf8)!
-                    var week_japanese = ["月曜日","火曜日","水曜日","木曜日","金曜日","土曜日","日曜日"]
+                    let week_japanese = ["月曜日","火曜日","水曜日","木曜日","金曜日","土曜日","日曜日"]
                     var lesson_list = [[]]
                     let main_msg = (html.slice(from: "<div class=\"visible-xs list-group schedule-list\">", to: "コースの追加")) ?? ""
                     var weekd_data = ""
                     var dayd_data = ""
+                    print(html)
                     if main_msg != "" {
                         lesson_list.removeAll()
                         for j in 0...6 {
@@ -103,8 +124,9 @@ class UnitSchool: NSObject{
                             for i in 1...5 {
                                 dayd_data = (weekd_data.slice(from: String(i)+"限", to: ")</h4>") ?? "")!
                                 if dayd_data == "" {continue}
+                                print(dayd_data)
                                 let name_1 = dayd_data.slice(from: "&raquo; ", to: " (")!
-                                let name_2 = dayd_data.slice(from: "、", to: "、")!
+                                let name_2 = dayd_data.slice(from: "、", to: "、") ?? ""
                                 lesson_list.append([j,i,name_1,name_2])
                             }
                         }
