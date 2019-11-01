@@ -1,5 +1,5 @@
 # ユニツ Client
-![enter image description here](https://img.shields.io/badge/Swift-5.0-blue.svg)  ![enter image description here](https://img.shields.io/github/license/Shuangbing/uni-t-client.svg) ![enter image description here](https://img.shields.io/badge/Version-2.0.4-blueviolet.svg)
+![enter image description here](https://img.shields.io/badge/Swift-5.0-blue.svg)  ![enter image description here](https://img.shields.io/github/license/Shuangbing/uni-t-client.svg) ![enter image description here](https://img.shields.io/badge/Version-2.0.7-blueviolet.svg)
 
 ![enter image description here](https://raw.githubusercontent.com/Shuangbing/uni-t-client/master/unitool/Assets.xcassets/Uni-T%20Logo/welcome.imageset/Rectangle2.png)
 

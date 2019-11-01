@@ -23,10 +23,10 @@ var selectSchoolNo = -1
 var USERNAME = ""
 var PASSWORD = ""
 
-var url_attend_1 = "https://call**********.jp/index.php"
-var url_attend_2 = "https://call**********.jp/index.php"
-var url_webclass_1 = "https://webcl**********.jp/webclass/login.php"
-var url_webclass_2 = "https://webcl**********.jp/webclass/?acs_="
+var url_attend_1 = "https://call.off.tcu.ac.jp/index.php"
+var url_attend_2 = "https://call.off.tcu.ac.jp/index.php"
+var url_webclass_1 = "https://webclass.tcu.ac.jp/webclass/login.php"
+var url_webclass_2 = "https://webclass.tcu.ac.jp/webclass/?acs_="
 
 
 func developServer() {
